@@ -10,7 +10,6 @@ public class Calc {
             s = s.replace("- ", "+ -");
         }
 
-        // 3 * 1 + (1 - (4 * 1 - (1 - 1)))
         // 괄호 벗기기 + 괄호 먼저 계산
         if(s.contains("(") && s.contains(")")) {
             String result = "";
@@ -33,7 +32,8 @@ public class Calc {
                         result += String.valueOf(run(pareBits));
                         pareBits = "";
                         continue;
-                    } else {
+                    }
+                    else {
                         pareBits += sBits[i];
                         continue;
                     }
@@ -49,9 +49,10 @@ public class Calc {
             return run(result);
         }
 
-        // 10 + 5 * 2
-        int sum = 0;
+
+        // 덧셈
         if(s.contains("+")) {
+            int sum = 0;
             String[] arr = s.split("\\+");
             for(String str : arr) {
                 if(str.contains("*")) sum += run(str.trim());
@@ -60,8 +61,9 @@ public class Calc {
             return sum;
         }
 
-        int mul = 1;
+        // 곱셈
         if(s.contains("*") && s.contains(" ")) {
+            int mul = 1;
             String[] arr = s.split("\\*");
             for(String str : arr) {
                 mul *= Integer.parseInt(str.trim());
